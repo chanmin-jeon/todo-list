@@ -1,52 +1,25 @@
-import './style.css'
- 
-export default function project(name, details, priority, date) {
+import './style.css'; 
+import folderIcon from './folderIcon.svg'; 
 
+export default function project(name) {
     return {
-        name: name, 
-        details: details, 
-        priority: priority, 
-        date: date, 
+        name: name,
         createProjectDOM: () => {
+            const projectsDisplay = document.querySelector('#projects-display'); 
 
-            const projectArticle = document.createElement('article'); 
-            projectArticle.classList.toggle('project-article'); 
-            let color; 
-            //color flag
-            if (priority === 'urgent') {
-                color = 'red'; 
-            } else if (priority === 'medium') {
-                color = 'orange'; 
-            } else {
-                color = 'yellow'; 
-            }  
-            const colorFlag = document.createElement('div'); 
-            colorFlag.classList.toggle('color-flag'); 
-            colorFlag.style.backgroundColor = color; 
-            projectArticle.append(colorFlag); 
-    
-            //info 
-            const projectInfo = document.createElement('div'); 
-            projectInfo.classList.toggle('info-container'); 
-    
-            const projectTitle = document.createElement('h3'); 
-            projectTitle.textContent = name; 
-    
-            const projectDetails = document.createElement('p'); 
-            projectDetails.textContent = details; 
-    
-            const projectDate = document.createElement('p'); 
-            projectDate.textContent = date; 
-    
-            projectInfo.append(projectTitle); 
-            projectInfo.append(projectDetails);
-            projectInfo.append(projectDate); 
-            
-            projectArticle.append(projectInfo); 
+            const projectDiv = document.createElement('div'); 
+            projectDiv.classList.toggle('project-div'); 
 
-            console.log(name, details, priority, date); 
-            return projectArticle; 
+            const projectName = document.createElement('p'); 
+            projectName.textContent = name; 
+
+            const icon = document.createElement('img'); 
+            icon.src = folderIcon; 
+            icon.alt = 'Folder Icon'; 
+
+            projectDiv.append(projectName, icon); 
+
+            projectsDisplay.append(projectDiv); 
         }
     }
-    
 }

@@ -4,22 +4,22 @@ import './style.css';
 const articlesArray = []; 
 
 export default function loadMain() {
-    const mainContainer = document.querySelector('#task-container'); 
+    const mainContainer = document.querySelector('#main-container'); 
 
-    // new project button
+    // new task button
     const buttonContainer = document.createElement('div');
     buttonContainer.id = 'btn-container';  
     
 
-    const addProjectBtn = document.createElement('button'); 
-    addProjectBtn.id = 'new-project-btn'; 
-    addProjectBtn.textContent = 'Add Task'
-    buttonContainer.append(addProjectBtn); 
+    const addTaskBtn = document.createElement('button'); 
+    addTaskBtn.id = 'new-task-btn'; 
+    addTaskBtn.textContent = 'Add Task'
+    buttonContainer.append(addTaskBtn); 
     mainContainer.append(buttonContainer); 
 
-    //project container 
-    const projectsContainer = document.createElement('div'); 
-    projectsContainer.id = 'projects-container'; 
-    mainContainer.append(projectsContainer); 
+    //tasks container 
+    const tasksContainer = document.createElement('div'); 
+    tasksContainer.id = 'tasks-container'; 
+    mainContainer.append(tasksContainer); 
 
 }
