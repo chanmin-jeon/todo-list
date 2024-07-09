@@ -1,6 +1,6 @@
 import './style.css'; 
 
-export default function taskModal() {
+export default function taskModal(projectsArray) {
     
     const newModal = document.createElement('dialog'); 
     const taskForm = document.createElement('form'); 
@@ -26,7 +26,6 @@ export default function taskModal() {
     details.setAttribute('type', 'text');
     taskForm.append(detailsLabel, details); 
     
-    
     // get task date
     const dateLabel = document.createElement('label'); 
     dateLabel.setAttribute('for','task-date'); 
@@ -45,7 +44,8 @@ export default function taskModal() {
     priority.id = 'task-priority'; 
     priority.name = 'options'; 
     priority.required = true; 
-        // set options 
+
+    // set options 
     const urgent = document.createElement('option'); 
     urgent.value = 'urgent'; 
     urgent.textContent = 'Urgent'
@@ -58,8 +58,34 @@ export default function taskModal() {
     priority.append(urgent, medium, low); 
     taskForm.append(priorityLabel, priority); 
 
-    // create button 
+    // select parent project
+    const projectLabel = document.createElement('label'); 
+    projectLabel.setAttribute('for', 'parent-project');
+    projectLabel.textContent = 'Select Parent Project (optional)'; 
+    const parentProject = document.createElement('select'); 
+    parentProject.id = 'parent-project'; 
+    parentProject.name = 'select-parent-project'; 
+    parentProject.required = false; 
 
+    // none option
+    const noneOption = document.createElement('option');
+    noneOption.textContent = 'none'; 
+    noneOption.value = ''; 
+    noneOption.selected = true; 
+    parentProject.append(noneOption); 
+
+    // show parent projects 
+   projectsArray.forEach((project, index) => {
+        let projectOption = document.createElement('option');
+        projectOption.value = index; 
+        projectOption.textContent = project.name;  
+        parentProject.append(projectOption); 
+   })
+
+
+    taskForm.append(projectLabel, parentProject); 
+
+    // create button 
     const createBtn = document.createElement('button');
     createBtn.id = 'create-btn';
     createBtn.textContent = 'Create Task';

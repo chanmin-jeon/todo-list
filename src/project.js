@@ -1,9 +1,11 @@
 import './style.css'; 
 import folderIcon from './folderIcon.svg'; 
+import {sortTasks, displayAllTasks} from './taskHandler.js'
 
 export default function project(name) {
+    const tasksArray = []; 
     return {
-        name: name,
+        name: name, 
         createProjectDOM: () => {
             const projectsDisplay = document.querySelector('#projects-display'); 
 
@@ -17,9 +19,22 @@ export default function project(name) {
             icon.src = folderIcon; 
             icon.alt = 'Folder Icon'; 
 
+            //event listener for project 
+            projectDiv.addEventListener('click', () => {
+                const tasksContainer = document.querySelector('#tasks-container'); 
+                tasksContainer.innerHTML = ''; 
+                document.querySelector('#main-container-display').textContent = name; 
+                sortTasks(tasksArray); 
+                displayAllTasks(tasksArray); 
+            })
+
             projectDiv.append(projectName, icon); 
 
             projectsDisplay.append(projectDiv); 
-        }
+        },
+        addTask: (task) => {
+            tasksArray.push(task); 
+        },
+        getTasks: () => tasksArray, 
     }
 }

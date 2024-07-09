@@ -1,10 +1,11 @@
 import './style.css'; 
 import icon from './checklist.svg'; 
 import plusIcon from './plusIcon.svg'; 
+import pencil from './pencil.svg'
 
-export default function loadNav() {
+export default function loadPage() {
+    /* create Side Bar */ 
     const sidebar = document.querySelector('#sidebar'); 
-
 
     const displayDiv = document.createElement('div'); 
     displayDiv.id = 'display-div'; 
@@ -19,6 +20,20 @@ export default function loadNav() {
 
     displayDiv.append(iconDisplay, toDoDisplay); 
     sidebar.append(displayDiv); 
+
+    // add task button 
+    const addTaskDisplay = document.createElement('div'); 
+    addTaskDisplay.id = 'add-task-display'; 
+    const addTaskBtn = document.createElement('button'); 
+    addTaskBtn.id = 'new-task-btn'; 
+    addTaskBtn.textContent = 'Add Task'
+    const addTaskIMG = document.createElement('img'); 
+    addTaskIMG.src = pencil;  
+    addTaskIMG.alt = 'pencil icon'; 
+
+    addTaskDisplay.append(addTaskBtn,addTaskIMG); 
+    
+    sidebar.append(addTaskDisplay); 
     
     // sidebar buttons 
     const sidebarSections = [
@@ -49,4 +64,16 @@ export default function loadNav() {
     const projectsDisplay = document.createElement('div'); 
     projectsDisplay.id = 'projects-display'; 
     sidebar.append(newProject, projectsDisplay); 
+
+    /*create main Container */ 
+    const mainContainer = document.querySelector('#main-container'); 
+
+    const mainContainerDisplay = document.createElement('div'); 
+    mainContainerDisplay.id = 'main-container-display'; 
+    mainContainerDisplay.textContent = 'Inbox'; 
+
+    //tasks container 
+    const tasksContainer = document.createElement('div'); 
+    tasksContainer.id = 'tasks-container'; 
+    mainContainer.append(mainContainerDisplay, tasksContainer); 
 }
