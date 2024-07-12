@@ -1,6 +1,6 @@
 import './style.css'; 
 import folderIcon from './folderIcon.svg'; 
-import {sortTasks, displayAllTasks} from './taskHandler.js'
+import {sortTasks, displayTasks} from './taskHandler.js'
 
 export default function project(name) {
     const tasksArray = []; 
@@ -25,7 +25,7 @@ export default function project(name) {
                 tasksContainer.innerHTML = ''; 
                 document.querySelector('#main-container-display').textContent = name; 
                 sortTasks(tasksArray); 
-                displayAllTasks(tasksArray); 
+                displayTasks(tasksArray); 
             })
 
             projectDiv.append(projectName, icon); 
@@ -38,3 +38,4 @@ export default function project(name) {
         getTasks: () => tasksArray, 
     }
 }
+

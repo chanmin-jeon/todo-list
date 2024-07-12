@@ -1,15 +1,17 @@
 import './style.css'
+import {removeTask} from './taskHandler.js'
 import {format, parseISO} from 'date-fns';
+import complete from './complete.svg'; 
 
 export default function task(name, details, priority, date, project) {
 
-    return {
+    const taskObj = {
         name: name, 
         details: details, 
         priority: priority, 
         date: parseISO(date), 
         project: project,
-        createTaskDOM: () => {
+        createTaskDOM: (tasksArray) => {
 
             const taskArticle = document.createElement('article'); 
             taskArticle.classList.toggle('task-article'); 
@@ -54,11 +56,22 @@ export default function task(name, details, priority, date, project) {
             const formattedDate = format(parseISO(date), 'MM-dd-yyyy'); 
             taskDate.textContent = 'Due: ' + formattedDate;
             taskInfo.append(taskDate); 
-            
-            taskArticle.append(taskInfo); 
 
+            // button
+            const btnImg = document.createElement('img'); 
+            btnImg.src = complete; 
+            btnImg.alt = 'Complete Button'; 
+            btnImg.addEventListener('click', () => {
+                removeTask(taskObj, tasksArray); 
+            })
+            const imgDiv = document.createElement('div'); 
+            imgDiv.classList.toggle('rmv-task-btn'); 
+            imgDiv.append(btnImg); 
+            
+            taskArticle.append(taskInfo, imgDiv); 
+ 
             return taskArticle; 
         }
     }
-    
+    return taskObj; 
 }

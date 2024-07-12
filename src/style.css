@@ -9,7 +9,9 @@ html, body {
 body {
     font-family: Ubuntu, arial;
     margin: 0; 
-    display: flex; 
+    display: grid; 
+    grid-template-columns: 15rem 1fr;
+    overflow: hidden;
 }
 
 /* dialogues and forms */ 
@@ -57,7 +59,6 @@ form button {
 /* side bar nav */ 
 
 #sidebar {
-    position: fixed;
     display: flex; 
     flex-direction: column;
     align-items: center;
@@ -67,7 +68,7 @@ form button {
     height: 100%; 
     font-family: Ubuntu, arial;
     padding: 1rem; 
-    overflow: auto; 
+    overflow: hidden; 
 }
 
 #display-div {
@@ -153,6 +154,7 @@ img {
     align-items: center;
     justify-content: center;
     width: 70%; 
+    overflow-y: auto;
 }
 
 .project-div {
@@ -173,11 +175,9 @@ img {
 
 /* main container */ 
 #main-container {
-    margin-left: 15rem;  
-    display: block;
-    flex: 1; 
-    align-items: center;
-    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -185,17 +185,18 @@ img {
     display: flex; 
     align-items: center;
     justify-content: center;
-    padding: 1.3rem 1rem 1rem 1rem; 
+    padding: 1.3rem 1rem;
     font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
 #tasks-container {
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    padding: 3rem; 
-    gap: 1rem; 
-    height: calc(100vh - 6rem);
+    padding: 3rem;
+    gap: 1rem;
     overflow-y: auto;
+    flex-grow: 1;
 }
 
 .task-article h3  {
@@ -221,6 +222,13 @@ img {
     justify-content: center;
     align-items: center;
     padding: 1rem; 
+}
+
+.rmv-task-btn {
+    position: relative; 
+    bottom: 0px; 
+    left: 0px; 
+    cursor: pointer; 
 }
 
 /* project Modal */ 
